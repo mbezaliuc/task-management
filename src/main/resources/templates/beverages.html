@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>beverages</title>
+</head>
+<body>
+<h2>Bevereges</h2>
+<table>
+    <th:block th:each="drink : ${drinks}">
+        <tr>
+
+            <td th:text="${drink.name}">...</td>
+            <td th:text="${drink.description}">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${drink.price}">...</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
