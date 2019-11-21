@@ -2,7 +2,6 @@ package md.usm.taskmanagement.service;
 
 import md.usm.taskmanagement.model.Beverage;
 import md.usm.taskmanagement.repository.BeverageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,17 +10,21 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class BeverageService {
-    @Autowired
+
     private BeverageRepository beverageRepository;
+
+    public BeverageService(BeverageRepository beverageRepository) {
+        this.beverageRepository = beverageRepository;
+    }
 
     public List<Beverage> getAllowedDrinks() {
         return beverageRepository.findAll()
                 .stream()
                 .filter(beverage -> !beverage.isAlcohol())
+                .filter(beverage -> beverage.getPrice().compareTo(BigDecimal.valueOf(50)) < 0)
                 .collect(Collectors.toList());
 
     }
@@ -42,6 +45,4 @@ public class BeverageService {
                 new Beverage("Beer", BigDecimal.valueOf(15.00), 4.5, "Magical HOH"))
         );
     }
-
-
 }
