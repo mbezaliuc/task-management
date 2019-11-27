@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "T_BEVERAGE")
-
 public class Beverage {
 
     @Id
@@ -26,7 +25,7 @@ public class Beverage {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    private Beverage() {
+    public Beverage() {
         //for hibernate
     }
 
